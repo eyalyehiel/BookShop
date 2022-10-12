@@ -1,0 +1,324 @@
+body {
+    background-color: teal;
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+button {
+    background-color: teal;
+    color: white;
+    border-radius: 3px;
+}
+
+button:hover{
+    background-color: white;
+    color: teal;
+}
+
+.header {
+    background-color: white;
+    width: 70%;
+    height: 100px;
+    margin: auto;
+    border-bottom: 1px solid grey;
+    
+}
+
+h1 {
+    margin: 0;
+    text-align: center;
+    padding-top: 25px;
+}
+.controller {
+    background-color: white;
+    width: 70%;
+    height: 37.5px;
+    margin: auto;
+    padding-top: 5px;
+    border-bottom: 1px solid grey;
+}
+
+.sort-controller {
+    position: relative;
+    background-color: white;
+    width: 70%;
+    height: 37.5px;
+    margin: auto;
+    padding-top: 5px;
+    border-bottom: 1px solid grey;
+}
+
+.books-display {
+    background-color: white;
+    width: 70%;
+    flex-grow: 1;
+    margin: auto;
+    border-bottom: 1px solid grey;
+}
+
+.divs-content {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+table {
+    width: 90%;
+    margin: 10px auto;
+    border: 1px solid black;
+    border-collapse: collapse;
+    color: teal;
+}
+
+thead {
+    color: black;
+}
+td {
+    padding: 10px;
+    border: 1px solid grey;
+}
+
+.book-title {
+    width: 30%;
+}
+
+.book-title span {
+    vertical-align: super;
+}
+
+.book-price {
+    font-weight: bold;
+    text-align: center;
+}
+
+.action-btns {
+    padding: 0;
+    text-align: center;
+}
+
+.controller-btn {
+    margin: 5px;
+}
+
+.book-modal {
+    background-color: white;
+    width: 400px;
+    height: 600px;
+    box-sizing: border-box;
+    position: fixed;
+    right: -400px;
+    top: 50px;
+    border: 1px solid grey;
+    opacity: 88%;
+    padding: 5px;
+    color: teal;
+}
+
+.open {
+    right: 50%;
+    transform: translateX(50%);
+    transition: right .5s;
+}
+
+.book-modal h3{
+    text-align: center;
+}
+
+.modal-btn {
+    background-color: teal;
+    color: white;
+    border-radius: 3px;
+}
+.modal-btn:hover {
+    background-color: white;
+    color: teal;
+}
+
+img {
+    width: 111px;
+    height: 161px;
+    margin-top: 10px;
+    margin-left: 10px;
+    float: left;
+    padding-right: 10px;
+}
+
+.book-rate {
+    width: 25px;
+    text-align: center;
+}
+
+.book-id {
+    font-size: 0.8em;
+    width: 20px;
+}
+
+th{
+    border: 1px solid grey;
+}
+
+.search-input {
+    margin-left: 5px;
+}
+
+.page-scrolling {
+    width: 70%;
+    margin: auto;
+    flex-basis: 50px;
+    background-color: white;
+    position: relative;
+}
+
+.page-btn {
+    margin: 5px;
+    width: 100px;
+}
+
+.perv {
+    position: absolute;
+}
+.next {
+    position: absolute;
+    right: 0;
+}
+
+.price-range{
+    margin-left: 5px;
+}
+
+.table-btn, .divs-btn{
+    position: absolute;
+    top: 9px;
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 22px;
+    height: 22px;
+}
+
+.table-btn {
+    right: 27px;
+    background-image: url(/img/table-btn.png);
+    border-right: 0px;
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+}
+
+.divs-btn {
+    right: 5px;
+    background-image: url(/img/divs-btn.png);
+    border-left: 0px;
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
+}
+
+.book {
+    flex-basis: 25%;
+    flex-grow: 1;
+    margin: 5px;
+    padding: 5px;
+    padding-top: 10px;
+    border: 1px solid gray;
+}
+
+.book h4 , h5 {
+    margin: 5px;
+}
+
+.book span {
+    display: block;
+    margin-bottom: 10px;
+    font-size: small;
+}
+.action-div-btns {
+    margin-top: 25px;
+}
+
+.create-book-modal {
+    background-color: white;
+    width: 230px;
+    height: 200px;
+    box-sizing: border-box;
+    position: fixed;
+    right: 43%;
+    top: 50px;
+    border: 1px solid grey;
+    opacity: 88%;
+    padding: 5px;
+    color: teal;
+    display: none;
+}
+
+.cbm-open {
+    display: inline-block;
+    animation: cbm-modal 1s ease 0s 1 normal none;
+}
+
+@keyframes cbm-modal {
+	0% {
+		transform: scale(0);
+	}
+
+	100% {
+		transform: scale(1);
+	}
+}
+
+.name-span {
+    display: block;
+    margin: 5px;
+    margin-top: 25px;
+}
+
+.price-span {
+    display: block;
+    margin: 5px;
+}
+
+.add-book-btn {
+    position: absolute;
+    bottom: 10px;
+    right: 50%;
+    transform: translatex(50%);
+}
+
+.update-book-modal {
+    background-color: white;
+    width: 230px;
+    height: 200px;
+    box-sizing: border-box;
+    position: fixed;
+    right: 43%;
+    top: 50px;
+    border: 1px solid grey;
+    opacity: 88%;
+    padding: 5px;
+    color: teal;
+    display: none;
+}
+
+.update-price-btn {
+    position: absolute;
+    bottom: 10px;
+    right: 50%;
+    transform: translatex(50%);
+}
+
+.ubm-open {
+    display: inline-block;
+    animation: cbm-modal 1s ease 0s 1 normal none;
+}
+
+
+.paging-bar {
+    position: fixed;
+    right: 50%;
+    transform: translateX(50%);
+    margin: 5px;
+}
+
+
+.current {
+    box-shadow: 0px 0px 5px 3px #FFFFFF inset;
+}

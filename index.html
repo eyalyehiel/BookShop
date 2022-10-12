@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body onload="onInit()">
+    <header class="header"><h1>Book Shop</h1></header>
+    <div class="controller">
+        <label class="price-range">
+            Max Price:
+            <input type="range" min="0" max="100" value="20" class="filter-price-range"
+                onchange="this.title=this.value;onSetFilterBy({price: this.value})" />
+        </label>
+        <label>
+            Min Rate:
+            <input type="range" min="0" max="10" value="0" class="filter-rate-range"
+                onchange="this.title=this.value;onSetFilterBy({rate: this.value})" />
+        </label>
+        <input class="search-input" type="text" placeholder="search" oninput="onSetFilterBy({txt: this.value})"/>
+    </div>
+    <div class="sort-controller">
+        <button class="controller-btn" onclick="onOpenAddBookModal()">Create new book</button>
+        <button class="table-btn" onclick="onSetRenderType('table')"></button>
+        <button class="divs-btn" onclick="onSetRenderType('divs')"></button>
+    </div>
+    <div class="books-display">
+
+    </div>
+    <div class="page-scrolling">
+        <div class="paging-bar">
+            
+        </div>
+    </div>
+
+    <!-- Modals -->
+    <div class="book-modal">
+        <button class="modal-btn" value="book-modal" onclick="onCloseModal(this)">X</button>
+        <h3></h3>
+        <h4>Price: <span></span></h4>
+        <p></p>
+    </div>
+    <div class="create-book-modal">
+        <button class="modal-btn" value="cbm-modal" onclick="onCloseModal(this)">X</button>
+        <form onsubmit="onAddBook(event)">
+            <span class="name-span">Name:</span>
+            <input type="txt" name="b-name" class="book-name"/>
+            <span class="price-span">Price:</span>
+            <input type="txt" name="b-price" class="book-price-input"/>
+            <button class="add-book-btn" >Add Book</button>
+        </form>
+    </div>
+    <div class="update-book-modal">
+        <button class="modal-btn" value="ubm-modal" onclick="onCloseModal(this)">X</button>
+        <form onsubmit="onUpdateBook(event)">
+            <span class="price-span">Price:</span>
+            <input type="txt" name="bu-price" class="book-price-input"/>
+            <button class="update-price-btn" >Update</button>
+        </form>
+    </div>
+
+    
+    <script src="js/services/util-service.js"></script>
+    <script src="js/services/storage-service.js"></script>
+    <script src="js/services/books-service.js"></script>
+    <script src="js/books-controller.js"></script>
+</body>
+</html>
