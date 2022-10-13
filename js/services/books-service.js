@@ -16,10 +16,11 @@ function _createBook(name,price) {
     
     var rndPrice = getRandomIntInclusive(1,100)
     var rndPrice = rndPrice.toFixed(2)
+
     return {
         id: makeId(),
         name,
-        price: price || rndPrice,
+        price: price || rndPrice ,
         imgUrl: '../img/harrypotter.jpg',
         desc: makeLorem(),
         rate: 0

@@ -3,6 +3,7 @@
 
 
 function onInit() {
+
     createBooks()
     renderBooks()
     renderPaging()
@@ -17,6 +18,8 @@ function renderBooks() {
     const renderType = getRenderType()
     if (renderType === 'table') renderBooksByTable()
     else renderBooksByDivs()
+
+    doTrans()
 }
 
 function renderBooksByTable() {
@@ -26,10 +29,10 @@ function renderBooksByTable() {
     document.querySelector('.books-display').innerHTML = `
     <table>
         <thead>
-            <th>Id</th>
-            <th onclick="onSortBy('names')">Title</th>
-            <th onclick="onSortBy('prices')">Price</th>
-            <th colspan="4">Actions</th>
+            <th data-trans="id">Id</th>
+            <th data-trans="title" onclick="onSortBy('names')">Title</th>
+            <th data-trans="price" onclick="onSortBy('prices')">Price</th>
+            <th data-trans="actions" colspan="4">Actions</th>
         </thead>
         <tbody></tbody>
     </table>`
@@ -37,13 +40,14 @@ function renderBooksByTable() {
 
     var books = getBooks()
     var strHtmls = books.map((book) => {
+
         return `<tr>
         <td class="book-id">${book.id}</td>
         <td class="book-title"><span>${book.name}</span></td>
-        <td class="book-price">${book.price}</td>
-        <td class="action-btns""><button onclick="onReadBook('${book.id}')">Read</button></td>
-        <td class="action-btns"><button onclick="onOpenUpdateBookModal('${book.id}')">Update</button></td>
-        <td class="action-btns"><button onclick="onRemoveBook('${book.id}')">Delete</button></td>
+        <td class="book-price">${formatPrice(book.price)}</td>
+        <td class="action-btns""><button data-trans="read-btn" onclick="onReadBook('${book.id}')">Read</button></td>
+        <td class="action-btns"><button data-trans="update-btn" onclick="onOpenUpdateBookModal('${book.id}')">Update</button></td>
+        <td class="action-btns"><button data-trans="delete-btn" onclick="onRemoveBook('${book.id}')">Delete</button></td>
         <td class="action-btns"><button class="plus-btn" onclick="onRateBook(1,'${book.id}')" ${+book.rate === 10 ? 'disabled' : ''} >+</button><input class="book-rate" value="${book.rate}" disabled></input><button class="minus-btn" onclick="onRateBook(-1,'${book.id}')" ${+book.rate === 0 ? 'disabled' : ''}>-</button></td>
     </tr>`
     })
@@ -57,15 +61,16 @@ function renderBooksByDivs() {
 
     var books = getBooks()
     var strHtmls = books.map((book) => {
+
         return `<article class="book">
         <img src="${book.imgUrl}"/>
         <h4>${book.name}</h4>
-        <h5>Price <span>${book.price}</span></h5>
+        <h5><span data-trans="price">Price</span> <span>${formatPrice(book.price)}</span></h5>
         <span>${book.id}</span>
         <div class="action-div-btns">
-            <button onclick="onReadBook('${book.id}')">Read</button>
-            <button onclick="onOpenUpdateBookModal('${book.id}')">Update</button>
-            <button onclick="onRemoveBook('${book.id}')">Delete</button>
+            <button data-trans="read-btn" onclick="onReadBook('${book.id}')">Read</button>
+            <button data-trans="update-btn" onclick="onOpenUpdateBookModal('${book.id}')">Update</button>
+            <button data-trans="delete-btn" onclick="onRemoveBook('${book.id}')">Delete</button>
         </div>
         <hr>
         <button class="plus-btn" onclick="onRateBook(1,'${book.id}')" ${+book.rate === 10 ? 'disabled' : ''} >+</button><input class="book-rate" value="${book.rate}" disabled></input><button class="minus-btn" onclick="onRateBook(-1,'${book.id}')" ${+book.rate === 0 ? 'disabled' : ''}>-</button>
@@ -131,7 +136,7 @@ function onReadBook(bookId) {
     var book = getBookById(bookId)
     var elModal = document.querySelector('.book-modal')
     elModal.querySelector('h3').innerText = book.name
-    elModal.querySelector('h4 span').innerText = book.price
+    elModal.querySelector('h4 .price-span').innerText = book.price
     elModal.querySelector('p').innerHTML = `<img src="${book.imgUrl}"/>` + book.desc
     elModal.classList.add('open')
 }
@@ -179,5 +184,12 @@ function renderPaging() {
 function onSetPageIdx(pageIdx) {
     setPageIdx(pageIdx)
     renderPaging()
+    renderBooks()
+}
+
+function onSetLang(lang) {
+    setLang(lang)
+    setDirection(lang)
+
     renderBooks()
 }
